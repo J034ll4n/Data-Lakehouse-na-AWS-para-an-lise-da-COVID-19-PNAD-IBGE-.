@@ -49,8 +49,8 @@ Selecionamos as 20 variáveis de maior impacto clínico e econômico, divididas 
 
 Abaixo, alguns dos indicadores gerados para suporte à decisão hospitalar:
 
-| Visão Geral do Dashboard | Análise de Sintomas vs Internação |
-|:---:|:---:|
+| Visão Geral do Dashboard | Análise de Sintomas vs Internação | Vulnerabilidade Econômica |
+|:---:|:---:|:---:|
 | ![Dash 1](img_dash/1.jpg) | ![Dash 2](img_dash/2.jpg) | ![Dash 2](img_dash/3.jpg)
 
 
