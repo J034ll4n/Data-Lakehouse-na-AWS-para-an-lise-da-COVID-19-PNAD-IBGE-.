@@ -66,4 +66,4 @@ Abaixo, alguns dos indicadores gerados para suporte à decisão hospitalar:
 ## 👤 Autor
 **Joe Allan Zirn**
 * GitHub: [J034ll4n](https://github.com/J034ll4n)
-* LinkedIn: [[Seu Link do LinkedIn]](https://www.linkedin.com/in/joe-allan-zirn-2bb0b62b1/)
+* LinkedIn: [[Joe Allan]](https://www.linkedin.com/in/joe-allan-zirn-2bb0b62b1/)
