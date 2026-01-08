@@ -1,4 +1,4 @@
-# 🏥 Tech Challenge - Inteligência de Dados PNAD-COVID-19
+#  Tech Challenge - Inteligência de Dados PNAD-COVID-19
 **Fase 3: Data Analytics & Engenharia de Dados na AWS**
 
 Este projeto foi desenvolvido como parte do Tech Challenge da Fase 3, simulando a contratação como **Expert em Data Analytics** por um grande grupo hospitalar. O objetivo é estruturar um pipeline de dados robusto para analisar o comportamento populacional durante a pandemia e gerar indicadores estratégicos para o planejamento de futuros surtos.
@@ -61,7 +61,7 @@ Abaixo, alguns dos indicadores gerados para suporte à decisão hospitalar:
 * `/img_dash`: Capturas de tela dos dashboards.
 * `/docs`: Relatório técnico final.
 
----
+
 
 ## 👤 Autor
 **Joe Allan Zirn**
