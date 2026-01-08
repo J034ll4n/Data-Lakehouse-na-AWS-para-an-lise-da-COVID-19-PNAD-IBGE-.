@@ -3,7 +3,6 @@
 
 Este projeto foi desenvolvido como parte do Tech Challenge da Fase 3, simulando a contratação como **Expert em Data Analytics** por um grande grupo hospitalar. O objetivo é estruturar um pipeline de dados robusto para analisar o comportamento populacional durante a pandemia e gerar indicadores estratégicos para o planejamento de futuros surtos.
 
----
 
 ## 🏗️ Arquitetura da Solução (Data Lakehouse)
 
@@ -18,7 +17,6 @@ Implementamos uma arquitetura de **Data Lakehouse** utilizando serviços da **AW
 * **Processamento e ETL:** AWS Athena (Presto SQL).
 * **Visualização de Dados:** Google Looker Studio.
 
----
 
 ## 🛠️ O Pipeline de Dados
 
@@ -53,7 +51,7 @@ Abaixo, alguns dos indicadores gerados para suporte à decisão hospitalar:
 
 | Visão Geral do Dashboard | Análise de Sintomas vs Internação |
 |:---:|:---:|
-| ![Dash 1](img_dash/1.png) | ![Dash 2](img_dash/2.png) | ![Dash 2](img_dash/3.png)
+| ![Dash 1](img_dash/1.jpg) | ![Dash 2](img_dash/2.jpg) | ![Dash 2](img_dash/3.jpg)
 
 
 
