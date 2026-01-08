@@ -1,71 +1,71 @@
-Tech Challenge - Inteligência de Dados PNAD-COVID-19 🏥📊
-Este repositório contém a solução desenvolvida para o Tech Challenge (Fase 3), simulando a contratação como Expert em Data Analytics para um grande centro hospitalar. O objetivo é analisar o comportamento populacional durante a pandemia para fundamentar o planejamento estratégico contra novos surtos.
+# 🏥 Tech Challenge - Inteligência de Dados PNAD-COVID-19
+**Fase 3: Data Analytics & Engenharia de Dados na AWS**
 
-🎯 O Problema de Negócio
-O hospital necessita identificar indicadores clínicos, demográficos e econômicos que auxiliem na antecipação de demandas hospitalares. Utilizamos a base PNAD-COVID-19 do IBGE para responder:
+Este projeto foi desenvolvido como parte do Tech Challenge da Fase 3, simulando a contratação como **Expert em Data Analytics** por um grande grupo hospitalar. O objetivo é estruturar um pipeline de dados robusto para analisar o comportamento populacional durante a pandemia e gerar indicadores estratégicos para o planejamento de futuros surtos.
 
-Quais sintomas são os melhores preditores de internação?
+---
 
-Como a situação econômica (Home Office) afetou a taxa de contágio?
+## 🏗️ Arquitetura da Solução (Data Lakehouse)
 
-Qual o perfil demográfico mais vulnerável em nossa região?
+Implementamos uma arquitetura de **Data Lakehouse** utilizando serviços da **AWS**, seguindo o padrão **Medallion Architecture** (Bronze, Silver e Gold).
 
-🏗️ Arquitetura da Solução (Data Lakehouse)
-Implementamos uma arquitetura escalável na nuvem AWS seguindo o padrão Medallion (Bronze, Silver e Gold).
+![Arquitetura do Projeto](img_dash/Arquitetura.jpg)
 
-Stack Tecnológica:
-Linguagem: Python (PySpark), SQL.
+### Stack Tecnológica
+* **Análise Exploratória (EDA):** Python & PySpark (Google Colab).
+* **Armazenamento:** Amazon S3 (Data Lake).
+* **Catálogo de Dados:** AWS Glue Crawler.
+* **Processamento e ETL:** AWS Athena (Presto SQL).
+* **Visualização de Dados:** Google Looker Studio.
 
-EDA: Google Colab (Análise Exploratória Inicial).
+---
 
-Storage: Amazon S3 (Data Lake).
+## 🛠️ O Pipeline de Dados
 
-Catálogo: AWS Glue Crawler.
+### 1. Camada Bronze (Raw)
+* Ingestão dos microdados brutos do IBGE no **Amazon S3**.
+* Execução do **AWS Glue Crawler** para descoberta automática de esquema e criação do Data Catalog.
 
-Processamento/ETL: AWS Athena (Presto SQL).
+### 2. Camada Silver (Refined & Cleaned)
+Nesta fase, realizamos o tratamento crítico dos dados via **AWS Athena**.
+* **Tratamento de Data Quality:** Identificamos um desalinhamento de colunas (*Schema Drift*) nos arquivos originais.
+* **Solução:** Aplicamos um remapeamento manual via SQL, garantindo a integridade dos dados.
+* **Renomeação de Negócio:** Substituímos nomes técnicos (ex: `A002`) por nomes descritivos (ex: `idade`).
 
-Visualização: Google Looker Studio.
+### 3. Camada Gold (Analytics)
+* Os dados refinados e otimizados em formato **Parquet** alimentam dashboards executivos no **Looker Studio**.
 
-🛠️ O Pipeline de Dados
-1. Camada Bronze (Raw)
-Ingestão dos microdados brutos do IBGE (Maio a Julho) no S3 em formato CSV.
+Link: https://lookerstudio.google.com/reporting/c6dfb578-809e-4ca0-b81f-30347d71f218
 
-Execução do AWS Glue Crawler para descoberta automática de schema e criação do catálogo no Data Lake.
+## 📋 Seleção das 20 Variáveis Estratégicas
 
-2. Camada Silver (Refined & Cleaned)
-Nesta fase, realizamos o tratamento crítico dos dados via AWS Athena.
+Selecionamos as 20 variáveis de maior impacto clínico e econômico, divididas em:
+* **Identificação:** Peso Amostral (V1032), Mês (V1013), UF.
+* **Demografia:** Idade (A002), Sexo (A003), Raça (A004), Escolaridade (A005).
+* **Sintomas:** Febre (B0011), Tosse (B0012), Falta de Ar (B0014), Perda de Olfato/Paladar (B00111).
+* **Sistema de Saúde:** Internação (B005), Resultado do SWAB (B009B).
+* **Economia:** Ocupação (C001), Home Office (C013).
 
-Desafio Técnico: Identificamos um deslocamento de colunas (Schema Evolution) nos arquivos originais do IBGE. Variáveis de saúde (B009B) estavam desalinhadas com valores monetários.
 
-Solução: Aplicamos um remapeamento manual via SQL (Data Wrangling), garantindo a integridade das 20 variáveis selecionadas.
+## 📊 Visualização e Insights (img_dash)
 
-Otimização: Conversão dos dados para tipos eficientes (BigInt, Double) e seleção de colunas estratégicas como idade, tem_falta_ar, resultado_swab e home_office.
+Abaixo, alguns dos indicadores gerados para suporte à decisão hospitalar:
 
-3. Camada Gold (Analytics)
-Os dados refinados alimentam dashboards executivos no Looker Studio, permitindo o cruzamento de dados clínicos com fatores socioeconômicos.
+| Visão Geral do Dashboard | Análise de Sintomas vs Internação |
+|:---:|:---:|
+| ![Dash 1](img_dash/1.png) | ![Dash 2](img_dash/2.png) | ![Dash 2](img_dash/3.png)
 
-📋 Dicionário de Variáveis (Top 20)
-Selecionamos 20 variáveis críticas divididas em 5 eixos:
 
-Identificação: V1032 (Peso), V1013 (Mês), UF.
 
-Demografia: A002 (Idade), A003 (Sexo), A004 (Raça), A005 (Escolaridade).
+## 📁 Estrutura do Repositório
+* `/sql`: Scripts de criação das tabelas no Athena.
+* `/notebooks`: Arquivo `.ipynb` contendo a EDA em PySpark.
+* `/img_dash`: Capturas de tela dos dashboards.
+* `/docs`: Relatório técnico final.
 
-Clínico: B0011 (Febre), B0014 (Falta de Ar), B00111 (Odor/Sabor).
+---
 
-Saúde: B002 (Atendimento), B005 (Internação), B009B (Resultado SWAB).
-
-Econômico: C001 (Ocupação), C013 (Home Office).
-
-📈 Principais Insights
-Falta de Ar como KPI: A variável B0014 mostrou-se o principal indicador antecedente para ocupação de leitos.
-
-Impacto do Isolamento: Cruzamento entre C013 (Home Office) e B009B (Positividade) revelou a eficácia das medidas de trabalho remoto na redução da carga hospitalar.
-
-Volume: Processamento de mais de 1.1 milhão de registros com 100% de integridade após tratamento.
-
-👤 Autor
-Joe Allan Zirn
-
-LookerStudio: (https://www.linkedin.com/in/joe-allan-zirn-2bb0b62b1/)
-LinkedIn: (https://www.linkedin.com/in/joe-allan-zirn-2bb0b62b1/)
+## 👤 Autor
+**Joe Allan Zirn**
+* GitHub: [J034ll4n](https://github.com/J034ll4n)
+* LinkedIn: [[Seu Link do LinkedIn]](https://www.linkedin.com/in/joe-allan-zirn-2bb0b62b1/)
